@@ -5,6 +5,9 @@ import { Button } from "../styles/Button";
 import { FaDiscord, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
+  const handleClick = () => {
+    window.open("https://simplebuy.vercel.app/", "_blank");
+  };
   return (
     <>
       <Wrapper>
@@ -32,9 +35,8 @@ const Footer = () => {
             </div>
             <div className="footer-subscribe">
               <h3>Subscribe to get important updates</h3>
-              <form action="#">
+              <form>
                 <input type="email" name="email" placeholder="YOUR E-MAIL" />
-
                 <input type="submit" value="subscribe" />
               </form>
             </div>
@@ -48,9 +50,7 @@ const Footer = () => {
                   <FaInstagram className="icons" />
                 </div>
                 <div>
-                  <a
-                    href=""
-                    target="_blank">
+                  <a href="" target="_blank">
                     <FaYoutube className="icons" />
                   </a>
                 </div>
@@ -65,10 +65,11 @@ const Footer = () => {
           <div className="footer-bottom--section">
             <hr />
             <div className="container grid grid-two-column ">
-              <p>
-                @{new Date().getFullYear()} Vijay. All Rights Reserved
-              </p>
+              <p>@{new Date().getFullYear()} Vijay. All Rights Reserved</p>
               <div>
+                <p onClick={handleClick} style={{ cursor: "pointer" }}>
+                  SIMPLEBUY v1.0
+                </p>
                 <p>PRIVACY POLICY</p>
                 <p>TERMS & CONDITIONS</p>
               </div>

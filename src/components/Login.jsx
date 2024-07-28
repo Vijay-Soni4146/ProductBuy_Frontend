@@ -58,7 +58,7 @@ const Login = () => {
       password: Yup.string().required("Please enter the password."),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       dispatch(signInUser(values));
     },
   });
@@ -140,7 +140,13 @@ const Login = () => {
                   {...loginFormik.getFieldProps("password")}
                 />
               </div>
-              <input type="submit" value="Login" className="btn solid" />
+              <button type="submit" className="btn solid">
+                {users.loading ? (
+                  <span>Please wait...</span>
+                ) : (
+                  <span>Login</span>
+                )}
+              </button>
               <p className="social-text">Or Sign in with social platforms</p>
               <div className="social-media">
                 <a href="#" className="social-icon">

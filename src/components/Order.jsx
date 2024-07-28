@@ -68,86 +68,98 @@ const Order = () => {
   return (
     <Wrapper>
       <div className="container">
-        <h2 className="text-charcoal hidden-sm-down">Your Orders</h2>
-        <h5 className="text-charcoal hidden-md-up">Your Orders</h5>
-        <div className="orders">
-          <div className="list-group">
-            <div className="list-group-item bg-snow">
-              <div className="order-details">
-                <div className="order-info">
-                  <h6 className="text-charcoal mb-0 fs-14">Order Number</h6>
-                  <a href="" className="text-pebble mb-0">
-                    #A915AFLE4FO
-                  </a>
+        {allProducts && allProducts.length > 0 ? (
+          <>
+            <h2 className="text-charcoal hidden-sm-down">Your Orders</h2>
+            <h5 className="text-charcoal hidden-md-up">Your Orders</h5>
+            <div className="orders">
+              <div className="list-group">
+                <div className="list-group-item bg-snow">
+                  <div className="order-details">
+                    <div className="order-info">
+                      <h6 className="text-charcoal mb-0 fs-14">Order Number</h6>
+                      <a href="" className="text-pebble mb-0">
+                        #A915AFLE4FO
+                      </a>
+                    </div>
+                    <div className="order-info">
+                      <h6 className="text-charcoal mb-0 fs-14">Date</h6>
+                      <p className="text-pebble mb-0">
+                        {formattedDate ? formattedDate : "Aug 5th, 2024"}
+                      </p>
+                    </div>
+                    <div className="order-info">
+                      <h6 className="text-charcoal mb-0 fs-14">Total</h6>
+                      <p className="text-pebble mb-0">₹{totalAmount}</p>
+                    </div>
+                    <div className="order-info">
+                      <h6 className="text-charcoal mb-0 fs-14">Shipped To</h6>
+                      <p className="text-pebble mb-0">{user && user.name}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="order-info">
-                  <h6 className="text-charcoal mb-0 fs-14">Date</h6>
-                  <p className="text-pebble mb-0">
-                    {formattedDate ? formattedDate : "Aug 5th, 2024"}
-                  </p>
-                </div>
-                <div className="order-info">
-                  <h6 className="text-charcoal mb-0 fs-14">Total</h6>
-                  <p className="text-pebble mb-0">₹{totalAmount}</p>
-                </div>
-                <div className="order-info">
-                  <h6 className="text-charcoal mb-0 fs-14">Shipped To</h6>
-                  <p className="text-pebble mb-0">{user && user.name}</p>
-                </div>
-              </div>
-            </div>
-            <div className="list-group-item bg-white">
-              <div className="order-shipment">
-                <div className="alert alert-success">
-                  <h6 className="text-green mb-0 fs-14">
-                    <b>Shipped</b>
-                  </h6>
-                  <p className="text-green hidden-sm-down mb-0">
-                    Est. delivery between Aug 5 – Aug 9th,{" "}
-                    {new Date().getFullYear()}
-                  </p>
-                </div>
-              </div>
-              <div className="products-list">
-                {allProducts.map((item) => {
-                  return (
-                    <div className="order-product" key={item.product._id}>
-                      <div className="product-image">
-                        <img
-                          className="img-fluid"
-                          src={item.product.image}
-                          alt="Product Image"
-                        />
-                      </div>
-                      <div className="product-details">
-                        <h6 className="text-charcoal mb-2">
-                          <a href="" className="text-charcoal fs-16">
-                            {item.quantity} x {item.product.name}
-                          </a>
-                        </h6>
-                        <ul className="list-unstyled text-pebble mb-2 small">
-                          <li className="d-flex align-items-center">
-                            <b className="fs-14">Color:</b>
-                            <div
-                              className="color-box"
-                              style={{ backgroundColor: item.product.color }}
-                            ></div>
-                          </li>
-                          {/* <li>
+                <div className="list-group-item bg-white">
+                  <div className="order-shipment">
+                    <div className="alert alert-success">
+                      <h6 className="text-green mb-0 fs-14">
+                        <b>Shipped</b>
+                      </h6>
+                      <p className="text-green hidden-sm-down mb-0">
+                        Est. delivery between Aug 5 – Aug 9th,{" "}
+                        {new Date().getFullYear()}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="products-list">
+                    {allProducts.map((item) => {
+                      return (
+                        <div className="order-product" key={item.product._id}>
+                          <div className="product-image">
+                            <img
+                              className="img-fluid"
+                              src={item.product.image}
+                              alt="Product Image"
+                            />
+                          </div>
+                          <div className="product-details">
+                            <h6 className="text-charcoal mb-2">
+                              <a href="" className="text-charcoal fs-16">
+                                {item.quantity} x {item.product.name}
+                              </a>
+                            </h6>
+                            <ul className="list-unstyled text-pebble mb-2 small">
+                              <li className="d-flex align-items-center">
+                                <b className="fs-14">Color:</b>
+                                <div
+                                  className="color-box"
+                                  style={{
+                                    backgroundColor: item.product.color,
+                                  }}
+                                ></div>
+                              </li>
+                              {/* <li>
                         <b className="fs-14">Size:</b> L
                       </li> */}
-                        </ul>
-                        <h6 className="text-charcoal text-left mb-0 fs-14">
-                          <b>₹{item.product.price / 100}</b>
-                        </h6>
-                      </div>
-                    </div>
-                  );
-                })}
+                            </ul>
+                            <h6 className="text-charcoal text-left mb-0 fs-14">
+                              <b>₹{item.product.price / 100}</b>
+                            </h6>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        ) : (
+          <>
+            <EmptyDiv>
+              <h3>No order placed yet! </h3>
+            </EmptyDiv>
+          </>
+        )}
       </div>
     </Wrapper>
   );
@@ -330,6 +342,18 @@ const Wrapper = styled.section`
 
   .align-items-center {
     align-items: center;
+  }
+`;
+
+const EmptyDiv = styled.div`
+  display: grid;
+  place-items: center;
+  height: 50vh;
+
+  h3 {
+    font-size: 4.2rem;
+    text-transform: capitalize;
+    font-weight: 300;
   }
 `;
 
