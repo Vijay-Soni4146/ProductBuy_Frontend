@@ -16,7 +16,6 @@ export const registerUser = createAsyncThunk(
         email: email,
         password: password,
       });
-      console.log(request.data);
       if (request.data.status == 500) {
         // console.log(request.data.message);
         dispatch(errorGlobal(request.data.message));
@@ -50,7 +49,11 @@ export const signInUser = createAsyncThunk(
       dispatch(successGlobal("Welcome!"));
       return { data: request.data.user, auth: true };
     } catch (err) {
-      dispatch(errorGlobal(request.data.message));
+      if (err.response.status === 500) {
+        dispatch(errorGlobal(err.response.data.message));
+      } else {
+        dispatch(errorGlobal(err.message));
+      }
       throw err;
     }
   }
@@ -65,16 +68,19 @@ export const isAuth = createAsyncThunk("users/isAuth", async () => {
   //   }
 });
 
-export const logout = createAsyncThunk("users/logout", async () => {
-  try {
-    await axios.post(`${API}/users/logout`, {}, getAuthHeader());
-    removeAuth();
-    removeUser();
-  } catch (err) {
-    dispatch(errorGlobal("Please try again after sometime."));
-    throw err;
+export const logout = createAsyncThunk(
+  "users/logout",
+  async (_, { dispatch }) => {
+    try {
+      await axios.post(`${API}/users/logout`, {}, getAuthHeader());
+      removeAuth();
+      removeUser();
+    } catch (err) {
+      dispatch(errorGlobal("Please try again after sometime."));
+      throw err;
+    }
   }
-});
+);
 
 export const accountVerify = createAsyncThunk(
   "users/accountVerify",

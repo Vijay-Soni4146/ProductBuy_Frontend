@@ -23,7 +23,7 @@ const FilterSection = () => {
     (state) => state.filters.filters
   );
   const { allProducts } = useSelector((state) => state.filters);
-  console.log(allProducts);
+  // console.log(allProducts);
   const dispatch = useDispatch();
 
   // get the unique values of each property

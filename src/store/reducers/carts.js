@@ -25,7 +25,7 @@ export const cartsSlice = createSlice({
   reducers: {
     addProductToCart: (state, action) => {
       let { _id, color, amount, product } = action.payload;
-      console.log(_id + color);
+      // console.log(_id + color);
       let existingProduct = state.cart.find(
         (curItem) => curItem.id === _id + color
       );

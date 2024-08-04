@@ -77,7 +77,7 @@ const Login = () => {
       name: Yup.string().required("Please enter your name."),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      // console.log(values);
       dispatch(registerUser(values));
       setIsRegistered(true);
     },

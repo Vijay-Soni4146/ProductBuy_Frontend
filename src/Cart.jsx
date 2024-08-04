@@ -16,7 +16,7 @@ const Cart = () => {
   const { cart, totalAmount, shippingFee } = useSelector(
     (state) => state.carts
   );
-  console.log(cart);
+  // console.log(cart);
 
   const dispatch = useDispatch();
 

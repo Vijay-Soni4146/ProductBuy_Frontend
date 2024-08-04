@@ -9,7 +9,7 @@ const STRIPE_PUB_KEY = import.meta.env.VITE_STRIPE_PUB_KEY;
 
 export const checkout = createAsyncThunk(
   "carts/checkout",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       let localCartData = localStorage.getItem("VijayCart");
       let products;
@@ -35,14 +35,13 @@ export const checkout = createAsyncThunk(
           dispatch(errorGlobal("Failed to checkout"));
           return rejectWithValue(error.message);
         }
-
         localStorage.removeItem("VijayCart");
       }
     } catch (err) {
-      // console.log(err);
       if (err.response.status === 401) {
-        console.log("Please login");
         dispatch(errorGlobal("Please login"));
+      } else {
+        dispatch(errorGlobal(err.message));
       }
       throw err;
     }

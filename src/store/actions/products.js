@@ -8,7 +8,7 @@ const API = import.meta.env.VITE_API_URL;
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
-  async () => {
+  async (_, { dispatch }) => {
     try {
       const request = await axios.get(`${API}/products`);
 
@@ -26,7 +26,7 @@ export const getProducts = createAsyncThunk(
 
 export const getProduct = createAsyncThunk(
   "products/getProduct",
-  async (id) => {
+  async (id, { dispatch }) => {
     try {
       const request = await axios.get(`${API}/products/${id}`);
       return request.data;

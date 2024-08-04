@@ -19,7 +19,7 @@ const SingleProduct = () => {
   }, []);
 
   const { product } = useSelector((state) => state.products.singleProduct);
-  console.log(product);
+  // console.log(product);
   const dispatch = useDispatch();
 
   const { id } = useParams();

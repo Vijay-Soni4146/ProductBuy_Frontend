@@ -9,7 +9,7 @@ import { addProductToCart } from "../store/reducers/carts";
 
 const AddToCart = ({ product }) => {
 //   const { addToCart } = useCartContext();
-  console.log(product);
+  // console.log(product);
 
   const { _id, stock, colors } = product;
     // let stock = 5
